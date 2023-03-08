@@ -1,6 +1,8 @@
+# Imports
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Init variables
 numAngles = 180
 totalFrames = 600
 startFrame = 1
@@ -10,6 +12,7 @@ xs = []
 ys = []
 zs = []
 
+# Init graph
 box = dict(boxstyle='round', facecolor='#f0f9e8', alpha=0.5)
 
 fig = plt.figure(figsize=(6, 6))
@@ -22,6 +25,7 @@ iterations = np.exp(iterations)
 angles = np.linspace(start=1, stop=numAngles, num=totalFrames)
 
 
+# Set all the random dot arrays
 def set_randoms():
     i = 0
     while i < p:
@@ -30,7 +34,7 @@ def set_randoms():
         zs.append(np.random.uniform(0, 1))
         i += 1
 
-
+# Calculates whether a point is inside the sphere or not
 def calc_circle(i):
     global numInCircle
     for x in range(0, i):
@@ -39,6 +43,7 @@ def calc_circle(i):
     # increments numInCircle  if the point lies inside the circle
 
 
+# Displays the sphere onto the graph
 def create_circle():
     u = np.linspace(0, 2*np.pi, 500)
     v = np.linspace(0, np.pi, 250)
@@ -47,13 +52,13 @@ def create_circle():
     z = (np.outer(np.ones(np.size(u)), np.cos(v))*0.5)+.5
     ax.plot_surface(x, y, z, alpha=0.2, color='#43a2ca')
 
-
+# Initialize the graph
 def init_graph():
     ax.set_xlim((0, 1))
     ax.set_ylim((0, 1))
     ax.set_zlim((0, 1))
 
-
+# creates a frame for each iteration
 def create_frame(iteration):
     global startFrame
     global numInCircle
@@ -83,6 +88,7 @@ def create_frame(iteration):
     numInCircle = 0
 
 
+# Main method
 if __name__ == '__main__':
     j = 0
     while j < totalFrames:
